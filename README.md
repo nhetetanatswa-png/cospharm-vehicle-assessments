@@ -93,12 +93,21 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm run install:ci`: perform the one bounded lockfile install
 - `npm run dev`: start the Vite/Vinext development server
 - `npm run build`: build and validate the deployable Sites artifact
+- `npm run build:pages`: build and prepare the static Cloudflare Pages output in `pages-dist/`
 - `npm run start`: start the built Vinext application
 - `npm test`: build, validate, and verify the rendered development-preview metadata
 - `npm run validate:artifact`: recheck an existing artifact's manifest and ESM `default.fetch` export
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
 Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
+
+## Automatic Cloudflare Pages Deployment
+
+The GitHub Actions workflow in `.github/workflows/deploy-cloudflare-pages.yml`
+builds and deploys the `main` branch to the existing `cospharm-fleetcare`
+Cloudflare Pages project. The GitHub repository must define the secrets
+`CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`. The token requires the
+Cloudflare Pages `Edit` account permission.
 
 The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
 
