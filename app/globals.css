@@ -627,7 +627,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
   .print-blueprint figcaption { margin-top: 4px; color: #6f7983; font-size: 6.5pt; text-align: center; }
   .print-damages .report-diagram { width: 500px; max-width: 100%; margin: 0 auto; }
   .print-damages .diagram-stage { width: 100%; margin: 0; border: 0; border-radius: 0; }
-  .print-damages .damage-pin { width: 17px; height: 17px; border-width: 1px; font-size: 6pt; box-shadow: none; }
+  .print-damages .damage-pin { width: 20px; height: 20px; border: 1.5px solid #fff; color: #fff; background: #c1121f; box-shadow: 0 0 0 1px #8f1722; font-size: 7pt; line-height: 1; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .print-damages p { margin: 0; color: #6f7983; }
   .print-damages table { width: 100%; border-collapse: collapse; }
   .print-damages th, .print-damages td { padding: 6px; border-top: 1px solid #e2e6e9; font-size: 7pt; text-align: left; }
