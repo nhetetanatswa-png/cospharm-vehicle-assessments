@@ -585,7 +585,11 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
   body { padding: 0; background: white; color: #121820; }
   .app-shell { display: block; min-height: auto; }
   .sidebar, .main-area, .mobile-nav, .modal-backdrop { display: none !important; }
-  .print-report { display: block; font-size: 9pt; }
+  .print-report { position: relative; isolation: isolate; display: block; font-size: 9pt; }
+  .print-report > :not(.print-watermark) { position: relative; z-index: 1; }
+  .print-watermark { position: absolute; z-index: 0; left: 50%; width: 68%; max-width: 560px; height: auto; opacity: .075; transform: translateX(-50%) rotate(-12deg); filter: grayscale(1); pointer-events: none; }
+  .print-watermark.watermark-top { top: 18%; }
+  .print-watermark.watermark-bottom { top: 62%; }
   .print-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 2px solid #17202d; }
   .print-header .brand { padding: 0; }
   .print-header .brand-logo { height: 72px; }
@@ -618,7 +622,10 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
   .print-section-heading h2 { margin-bottom: 3px; }
   .print-section-heading p { font-size: 7pt; }
   .print-section-heading > span { border-radius: 999px; padding: 5px 8px; color: #8f1722; background: #f9e9eb; font-size: 7pt; font-weight: 700; white-space: nowrap; }
-  .print-damages .report-diagram { width: 430px; margin: 0 auto 10px; }
+  .print-blueprint { width: 100%; margin: 10px 0 12px; break-inside: avoid; }
+  .print-blueprint-image { display: block; width: 500px; max-width: 100%; height: auto; margin: 0 auto; }
+  .print-blueprint figcaption { margin-top: 4px; color: #6f7983; font-size: 6.5pt; text-align: center; }
+  .print-damages .report-diagram { width: 500px; max-width: 100%; margin: 0 auto; }
   .print-damages .diagram-stage { width: 100%; margin: 0; border: 0; border-radius: 0; }
   .print-damages .damage-pin { width: 17px; height: 17px; border-width: 1px; font-size: 6pt; box-shadow: none; }
   .print-damages p { margin: 0; color: #6f7983; }
