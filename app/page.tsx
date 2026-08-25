@@ -122,7 +122,7 @@ function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
     grid: <><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></>,
     clipboard: <><path d="M9 5H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3"/><rect x="9" y="2" width="6" height="5" rx="2"/><path d="M8 12h8M8 16h6"/></>,
     history: <><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></>,
-    car: <><path d="M5 17h14l1-5-2-5H6l-2 5 1 5Z"/><path d="M6 7h12M7 17v2M17 17v2M4 12h16"/><circle cx="7" cy="14.5" r="1"/><circle cx="17" cy="14.5" r="1"/></>,
+    car: <><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.65 5H8.35A2 2 0 0 0 6.5 6.3L5 10 3 8"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M7 14h.01M17 14h.01M5 18v2M19 18v2"/></>,
     camera: <><path d="M14.5 5 13 3H8L6.5 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-5.5Z"/><circle cx="10.5" cy="12.5" r="4"/></>,
     check: <path d="m5 12 4 4L19 6"/>,
     chevron: <path d="m9 18 6-6-6-6"/>,
@@ -290,6 +290,7 @@ function Brand() {
 }
 
 export default function Home() {
+  const [vantageEmbedded, setVantageEmbedded] = useState(false);
   const [startedAt, setStartedAt] = useState("—");
   const [step, setStep] = useState(0);
   const [assessmentType, setAssessmentType] = useState<AssessmentType>("collection");
@@ -332,6 +333,7 @@ export default function Home() {
   const [shareNotice, setShareNotice] = useState("");
 
   useEffect(() => {
+    setVantageEmbedded(new URLSearchParams(window.location.search).get("embedded") === "vantage");
     const now = new Date();
     setStartedAt(new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit" }).format(now));
     const year = now.getFullYear();
@@ -547,6 +549,7 @@ export default function Home() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
+        {vantageEmbedded && <div className="vantage-side-panel"><a className="vantage-home-link" href="/" target="_top" aria-label="Return to Vantage OS"><span className="vantage-mark">V</span><span><strong>Vantage OS</strong><small>Return to platform</small></span></a><a className="vantage-fullscreen-link" href="./index.html" target="_blank" rel="noreferrer">Open full screen <Icon name="arrow" size={15}/></a></div>}
         <Brand />
         <nav aria-label="Primary navigation">
           <button className="active" onClick={() => setStep(0)}><Icon name="clipboard"/><span>Vehicle assessment</span></button>
